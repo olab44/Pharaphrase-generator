@@ -1,5 +1,5 @@
 from paraphrasing_tools import ParaphrasingTool
-from getting_lyrics import read_from_lyrics, write_to_lyrics, Poem
+from getting_lyrics import read_from_lyrics, write_to_lyrics
 from random import choice
 
 
@@ -88,11 +88,3 @@ def read_from_new_lyrics():
         for line in file:
             words.append(line)
         return words
-
-
-# print(read_from_lyrics())
-# print(paraphrase_rhyme())
-# print(write_to_lyrics('Sonnet 2: When forty winters shall besiege thy brow', 'William Shakespeare', 'saved_lyrics.txt'))
-# print(paraphrase('Sonnet 2: When forty winters shall besiege thy brow', 'William Shakespeare', 40))
-print(paraphrase('Not at home to callers', 'Emily Dickinson', 50))
-

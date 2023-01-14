@@ -49,6 +49,3 @@ def read_from_lyrics():
             for word in verse:
                 words.append(word)
         return words
-
-
-# print(write_to_lyrics('Not at home to callers', 'Emily Dickinson', 'saved_lyrics.txt'))

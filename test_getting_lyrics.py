@@ -1,4 +1,4 @@
-from getting_lyrics import Poem, read_from_lyrics
+from getting_lyrics import Poem
 
 
 def test_create_poem():
@@ -10,7 +10,7 @@ def test_create_poem():
 def test_poem_without_author():
     poem = Poem('Ozymandias')
     assert poem.title() == 'Ozymandias'
-    assert poem.author() == None
+    assert poem.author() is None
 
 
 def test_get_poem():
@@ -28,7 +28,7 @@ def test_get_poem():
 def test_poem_lines():
     poem = Poem('Not at Home to Callers', 'Emily Dickinson')
     lines = ['Not at Home to Callers',
-            'Says the Naked Tree --',
-            'Bonnet due in April --',
-            'Wishing you Good Day --']
+             'Says the Naked Tree --',
+             'Bonnet due in April --',
+             'Wishing you Good Day --']
     assert poem.lines() == lines

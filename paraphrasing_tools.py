@@ -36,10 +36,3 @@ class ParaphrasingTool:
             return self.name()
         best_adj = adjs[0]['word']
         return f'{best_adj} {self.name()}'
-
-
-parap = ParaphrasingTool('beach')
-print(parap.name())
-print(parap.switch_synonims())
-print(parap.switch_rhyme())
-print(parap.add_adj())
