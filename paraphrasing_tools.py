@@ -20,7 +20,11 @@ class ParaphrasingTool:
         return synonims[0]['word']
 
     def switch_rhyme(self):
-        rhymes = get_paraphrasing_tool(self.name(), 'rhymes')
+        if '\n' in self.name():
+            word = self.name()
+            rhymes = get_paraphrasing_tool(word, 'rhymes')
+        else:
+            rhymes = get_paraphrasing_tool(self.name(), 'rhymes')
         if len(rhymes) == 0:
             return f'{self.name()}\n'
         best_rhyme = rhymes[0]['word']
@@ -34,7 +38,8 @@ class ParaphrasingTool:
         return f'{best_adj} {self.name()}'
 
 
-parap = ParaphrasingTool('mountain')
-# print(parap.switch_synonims())
-# print(parap.switch_rhyme())
+parap = ParaphrasingTool('beach')
+print(parap.name())
+print(parap.switch_synonims())
+print(parap.switch_rhyme())
 print(parap.add_adj())

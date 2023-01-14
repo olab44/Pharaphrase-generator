@@ -1,30 +1,44 @@
 import requests
 from urls import urls
-from word import Word
 
 
-def get_poetry(title, author):
-    if not author:
-        return requests.get(urls['lyrics_title'].format(title=title)).json()
-    return requests.get(urls['lyrics_author'].format(title=title, author=author)).json()
-
-
-class Lyrics:
-    def __init__(self, title, author):
-        data = get_poetry(title, author)[0]
-        self._data = data
+class Poem:
+    def __init__(self, title, author=None):
+        if not title:
+            raise ValueError('there was no title given')
+        self._title = title
+        self._author = author
 
     def title(self):
-        return self._data['title']
+        return self._title
 
     def author(self):
-        return self._data['author']
+        return self._author
+
+    def data(self):
+        return self.get_poem()[0]
+
+    def get_poem(self):
+        if not self.author():
+            return requests.get(urls['lyrics_title'].format(title=self._title)).json()
+        poem = requests.get(urls['lyrics_author'].format(title=self.title(), author=self.author())).json()
+        if 'status' in poem:
+            raise ValueError('Sorry we could not find poem with this title')
+        return poem
 
     def lines(self):
-        return self._data['lines']
+        return self.data()['lines']
 
     def length(self):
-        return self._data['linecount']
+        return self.data()['linecount']
+
+
+def write_to_lyrics(title, author, file_handle):
+    with open('saved_lyrics.txt', 'w') as file_handle:
+        data = Poem(title, author)
+        for verse in data.lines():
+            line = f'{verse}\n'
+            file_handle.write(line)
 
 
 def read_from_lyrics():
@@ -33,14 +47,8 @@ def read_from_lyrics():
         for line in file:
             verse = line.split(' ')
             for word in verse:
-                word = Word(word)
-                words.append(word._name)
+                words.append(word)
         return words
 
 
-def write_to_lyrics(title, author, file_handle):
-    with open('saved_lyrics.txt', 'w') as file_handle:
-        data = Lyrics(title, author)
-        for verse in data.lines():
-            line = f'{verse}\n'
-            file_handle.write(line)
+# print(write_to_lyrics('Not at home to callers', 'Emily Dickinson', 'saved_lyrics.txt'))

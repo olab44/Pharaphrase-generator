@@ -1,11 +1,10 @@
 from paraphrasing_tools import ParaphrasingTool
-from getting_lyrics import read_from_lyrics, write_to_lyrics
+from getting_lyrics import read_from_lyrics, write_to_lyrics, Poem
 from random import choice
 
 
 words_not_to_change = ['I', 'you', 'he', 'she', 'it', 'we', ',they',
-                        'my', 'your', 'his', 'her', 'its', 'our', 'their',
-                    ]
+                       'my', 'your', 'his', 'her', 'its', 'our', 'their']
 
 
 def qualify_rhymes():
@@ -61,7 +60,7 @@ def paraphrase(title, author, percentage):
     for word in lyrics:
         word = ParaphrasingTool(word)
         if '\n' in word.name():
-            paraphrased.append(word.switch_rhyme()[:-2])
+            paraphrased.append(word.switch_rhyme())
         if word.name() in chosen:
             if index % 2 == 1:
                 paraphrased.append(word.switch_synonims())
@@ -83,13 +82,17 @@ def write_to_new_lyrics(title, author, file, percentage):
             file.write(f'{word} ')
 
 
-# print(how_much_paraphrase(40))
-# print(qualify_to_paraphrase())
-# print(choose_what_paraphrase(40))
+def read_from_new_lyrics():
+    words = []
+    with open('new_lyrics.txt', 'r') as file:
+        for line in file:
+            words.append(line)
+        return words
+
 
 # print(read_from_lyrics())
 # print(paraphrase_rhyme())
 # print(write_to_lyrics('Sonnet 2: When forty winters shall besiege thy brow', 'William Shakespeare', 'saved_lyrics.txt'))
 # print(paraphrase('Sonnet 2: When forty winters shall besiege thy brow', 'William Shakespeare', 40))
-print(write_to_new_lyrics('Declaiming Waters none may dread --', 'Emily Dickinson', 'new_lyrics.txt', 50))
+print(paraphrase('Not at home to callers', 'Emily Dickinson', 50))
 
