@@ -1,31 +1,31 @@
-import requests
-from getting_lyrics import read_from_lyrics
-from paraphrase import read_from_new_lyrics
+from getting_lyrics import Poem
+from paraphrase import read_from_new_lyrics, paraphrase
 
 
-def asking_user():
-    print('welcome to paraphrasing text.')
-    title = str(input('Now enter the title: '))
-    author = str(input('now enter the author: '))
+def print_original_text(title, author):
+    text = Poem(title, author)
     print('here is your original text:')
-    percentage = int(input('enter the percentage of the text you want it to be paraphrased: '))
-
-
-def print_original_text():
-    text = read_from_lyrics()
-    for line in text:
+    print('-'*40)
+    for line in text.lines():
         print(line)
 
 
 def print_paraphrased_text():
     text = read_from_new_lyrics()
+    print('here is your paraphrased text')
+    print('-'*40)
     for line in text:
         print(line)
 
-def main():
-    pass
+
+def main(title, author, percentage):
+    print('Welcome to paraphrasing text.')
+    print(' ')
+    print_original_text(title, author)
+    paraphrase(title, author, percentage)
+    print(' ')
+    print_paraphrased_text()
 
 
-# print(asking_user())
-# print_original_text()
-print_paraphrased_text()
+if __name__ == '__main__':
+    main('Not at Home to Callers', 'Emily Dickinson', 40)
