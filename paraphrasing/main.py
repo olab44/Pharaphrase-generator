@@ -1,5 +1,5 @@
 from getting_lyrics import Poem, write_to_lyrics, read_from_lyrics
-from paraphrase import Paraphrase, write_to_new_lyrics
+from paraphrase import Paraphrase
 
 
 def print_original_text(title, author):
@@ -29,7 +29,6 @@ def main(title, author, percentage):
     write_to_lyrics(title, author, 'saved_lyrics.txt')
     lyrics = read_from_lyrics('saved_lyrics.txt')
     parap = Paraphrase(lyrics, percentage)
-    # write_to_new_lyrics('new_lyrics.txt', lyrics, percentage)
     text = ' '.join(parap.paraphrase())
     print(' ')
     print_paraphrased_text(text)

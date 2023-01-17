@@ -1,4 +1,4 @@
-from getting_lyrics import Poem, read_from_lyrics, write_to_lyrics
+from paraphrasing.getting_lyrics import Poem, read_from_lyrics, write_to_lyrics
 
 
 def test_create_poem():

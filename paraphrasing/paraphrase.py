@@ -1,5 +1,5 @@
-from paraphrasing_tools import ParaphrasingTool
-from getting_lyrics import read_from_lyrics
+from code.paraphrasing_tools import ParaphrasingTool
+from code.getting_lyrics import read_from_lyrics
 from random import choice
 from words_not_to_change import words_not_to_change
 

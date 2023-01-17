@@ -1,4 +1,4 @@
-from paraphrase import Paraphrase
+from paraphrasing.paraphrase import Paraphrase
 
 
 def test_paraphrase_amount():
@@ -24,3 +24,6 @@ def test_qualify_to_parap():
                  'April', 'Wishing', 'Good',
                  'Day']
     assert parap.qualify_to_paraphrase() == qualified
+
+
+def test_

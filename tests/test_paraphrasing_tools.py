@@ -1,4 +1,4 @@
-from code.paraphrasing_tools import ParaphrasingTool, get_paraphrasing_tool
+from paraphrasing.paraphrasing_tools import ParaphrasingTool, get_paraphrasing_tool
 
 
 def test_get_paraphrasing_tool():

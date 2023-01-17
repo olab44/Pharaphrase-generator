@@ -3,6 +3,9 @@ from urls import urls
 
 
 def get_paraphrasing_tool(word, tool):
+    '''
+    returns the list of chosen 
+    '''
     return requests.get(urls[tool].format(word=word)).json()
 
 
