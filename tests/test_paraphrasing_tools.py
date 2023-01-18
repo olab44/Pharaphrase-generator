@@ -16,22 +16,22 @@ def test_get_paraphrasing_tool():
 
 def test_paraphrasing_tool_switch_syn():
     word = ParaphrasingTool('road')
-    assert word.switch_synonims() == 'route'
+    assert word.switch_synonyms() == 'route'
 
 
 def test_paraphrasing_tool_switch_syn_fail():
     word = ParaphrasingTool('wneionwon')
-    assert word.switch_synonims() == 'wneionwon'
+    assert word.switch_synonyms() == 'wneionwon'
 
 
 def test_paraphrasing_tool_switch_rhy():
-    word = ParaphrasingTool('go')
-    assert word.switch_rhyme() == 'slow\n'
+    word = ParaphrasingTool('road')
+    assert word.switch_rhyme() == 'railroad\n'
 
 
 def test_paraphrasing_tool_switch_rhy_fail():
     word = ParaphrasingTool('egoenwonvi')
-    assert word.switch_rhyme() == 'egoenwonvi\n'
+    assert word.switch_rhyme() == 'egoenwonvi'
 
 
 def test_paraphrasing_tool_add_adj():

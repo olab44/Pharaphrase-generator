@@ -21,6 +21,7 @@ def print_original_text(title, author):
     print('-'*40)
     for line in text.lines():
         print(line)
+    print(' ')
 
 
 def print_paraphrased_text(text):

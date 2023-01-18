@@ -37,9 +37,9 @@ def test_poem_lines():
 def test_read_from_lyrics():
     title = 'Not at home to Callers'
     author = 'Emily Dickinson'
-    write_to_lyrics(title, author, 'saved_lyrics.txt')
+    write_to_lyrics(title, author)
     supposed_lyrics = ['Not', 'at', 'Home', 'to', 'Callers\n', 'Says', 'the',
                        'Naked', 'Tree', '--\n', 'Bonnet', 'due', 'in',
                        'April', '--\n', 'Wishing', 'you', 'Good',
                        'Day', '--\n']
-    assert read_from_lyrics('saved_lyrics.txt') == supposed_lyrics
+    assert read_from_lyrics() == supposed_lyrics

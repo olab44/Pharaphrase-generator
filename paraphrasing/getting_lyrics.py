@@ -68,9 +68,3 @@ def read_from_lyrics():
             for word in verse:
                 words.append(word)
         return words
-
-
-# poem = Poem('Ozymandias', 'Percy Bysshe Shelley')
-# print(poem.lines())
-# print(write_to_lyrics('Ozymandias', "Percy Bysshe Shelley"))
-# print(read_from_lyrics())

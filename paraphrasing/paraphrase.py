@@ -1,6 +1,7 @@
 from paraphrasing_tools import ParaphrasingTool
 from random import choice
 from defs import words_not_to_change
+from getting_lyrics import read_from_lyrics, write_to_lyrics
 
 
 class Paraphrase:
@@ -72,10 +73,9 @@ class Paraphrase:
                 # half gets switched with synonims
                 if index % 2 == 1:
                     paraphrased.append(word.switch_synonyms())
-                    index += 1
                 if index % 2 == 0:
                     paraphrased.append(word.add_adj())
-                    index += 1
+                index += 1
             if '\n' not in word.name() and word.name() not in chosen:
                 paraphrased.append(word.name())
         return paraphrased
