@@ -1,7 +1,6 @@
-from code.paraphrasing_tools import ParaphrasingTool
-from code.getting_lyrics import read_from_lyrics
+from paraphrasing_tools import ParaphrasingTool
 from random import choice
-from words_not_to_change import words_not_to_change
+from defs import words_not_to_change
 
 
 class Paraphrase:
@@ -13,7 +12,6 @@ class Paraphrase:
     :param type: int
     '''
     def __init__(self, text, percentage):
-        text = read_from_lyrics('saved_lyrics.txt')
         if percentage > 100:
             raise ValueError('percentage must be between 0 and 100')
         self._percentage = percentage
@@ -36,8 +34,9 @@ class Paraphrase:
         eliminates words that should not be paraphrased:
         '''
         qualified = []
+        not_to_change = words_not_to_change()
         for word in self.text():
-            if '\n' not in word and word not in words_not_to_change and len(word) > 2:
+            if '\n' not in word and word not in not_to_change and len(word) > 2:
                 qualified.append(word)
         return qualified
 
@@ -72,7 +71,7 @@ class Paraphrase:
                 # half of the chosen words get related adjectives
                 # half gets switched with synonims
                 if index % 2 == 1:
-                    paraphrased.append(word.switch_synonims())
+                    paraphrased.append(word.switch_synonyms())
                     index += 1
                 if index % 2 == 0:
                     paraphrased.append(word.add_adj())
@@ -80,14 +79,3 @@ class Paraphrase:
             if '\n' not in word.name() and word.name() not in chosen:
                 paraphrased.append(word.name())
         return paraphrased
-
-
-def write_to_new_lyrics(file_handle, text, percentage):
-    with open('new_lyrics.txt', 'w') as file_handle:
-        parap = Paraphrase(text, percentage)
-        text_2 = parap.paraphrase()
-        for word in text_2:
-            if '\n' in word:
-                file_handle.write(word)
-            to_add = f'{word} '
-            file_handle.write(to_add)

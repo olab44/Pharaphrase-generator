@@ -1,5 +1,5 @@
 import requests
-from urls import urls
+from defs import all_urls, saved_lyrics
 
 
 class Poem:
@@ -31,8 +31,8 @@ class Poem:
         raises ValueError, when API does not find anything
         '''
         if not self.author():
-            return requests.get(urls['lyrics_title'].format(title=self._title)).json()
-        poem = requests.get(urls['lyrics_author'].format(title=self.title(), author=self.author())).json()
+            return requests.get(all_urls()['lyrics_title'].format(title=self.title())).json()
+        poem = requests.get(all_urls()['lyrics_author'].format(title=self.title(), author=self.author())).json()
         if 'status' in poem:
             raise ValueError('Sorry we could not find poem with this title')
         return poem
@@ -44,22 +44,33 @@ class Poem:
         return self.data()['linecount']
 
 
-def write_to_lyrics(title, author, file_handle):
-    with open('saved_lyrics.txt', 'w') as file_handle:
+def write_to_lyrics(title, author):
+    '''
+    writes the text to the .txt file
+    '''
+    path = saved_lyrics()
+    with open(path, 'w') as file_handle:
         data = Poem(title, author)
         for verse in data.lines():
             line = f'{verse}\n'
             file_handle.write(line)
 
 
-def read_from_lyrics(file_handle):
+def read_from_lyrics():
     '''
     returns list of words from file
     '''
     words = []
-    with open('saved_lyrics.txt', 'r') as file_handle:
-        for line in file_handle:
+    path = saved_lyrics()
+    with open(path, 'r') as file:
+        for line in file:
             verse = line.split(' ')
             for word in verse:
                 words.append(word)
         return words
+
+
+# poem = Poem('Ozymandias', 'Percy Bysshe Shelley')
+# print(poem.lines())
+# print(write_to_lyrics('Ozymandias', "Percy Bysshe Shelley"))
+# print(read_from_lyrics())

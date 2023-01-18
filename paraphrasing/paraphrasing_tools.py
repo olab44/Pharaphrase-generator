@@ -1,11 +1,15 @@
 import requests
-from urls import urls
+from defs import all_urls
 
 
 def get_paraphrasing_tool(word, tool):
     '''
-    returns the list of chosen 
+    with an API gets the paraphrasing tool
+    (synonyms, related adjectives or rhymes)
+    for a given word
+    words are sorted by the score amount
     '''
+    urls = all_urls()
     return requests.get(urls[tool].format(word=word)).json()
 
 
@@ -21,16 +25,15 @@ class ParaphrasingTool:
     def name(self):
         return self._word
 
-    def switch_synonims(self):
+    def switch_synonyms(self):
         '''
         1. gets the list of synonims for given word by API
         2. returns the one with the biggest score
-        (results are already sorted)
         '''
-        synonims = get_paraphrasing_tool(self.name(), 'synonims')
-        if len(synonims) == 0:
+        synonyms = get_paraphrasing_tool(self.name(), 'synonims')
+        if len(synonyms) == 0:
             return self.name()
-        return synonims[0]['word']
+        return synonyms[0]['word']
 
     def switch_rhyme(self):
         '''
