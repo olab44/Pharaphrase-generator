@@ -1,5 +1,6 @@
-from getting_lyrics import Poem, write_to_lyrics, read_from_lyrics
-from paraphrase import Paraphrase
+from .getting_lyrics import Poem, write_to_lyrics, read_from_lyrics
+from .getting_lyrics import NotFoundTextError, NotFoundTitleError
+from .paraphrase import Paraphrase, WrongPercentageError
 
 
 def asking_user():
@@ -37,12 +38,19 @@ def print_paraphrased_text(text):
 def main():
     title, author, percentage = asking_user()
     print(' ')
-    print_original_text(title, author)
-    write_to_lyrics(title, author)
-    lyrics = read_from_lyrics()
-    parap = Paraphrase(lyrics, percentage)
-    text = ' '.join(parap.paraphrase())
-    print_paraphrased_text(text)
+    try:
+        print_original_text(title, author)
+        write_to_lyrics(title, author)
+        lyrics = read_from_lyrics()
+        parap = Paraphrase(lyrics, percentage)
+        text = ' '.join(parap.paraphrase())
+        print_paraphrased_text(text)
+    except NotFoundTitleError:
+        print('you have to type the title')
+    except NotFoundTextError:
+        print('Sorry, we could not find such text, try again')
+    except WrongPercentageError:
+        print('Sorry, The percentage has to be between 0 and 100')
 
 
 if __name__ == '__main__':

@@ -1,5 +1,5 @@
 import requests
-from defs import all_urls
+from .defs import all_urls
 
 
 def get_paraphrasing_tool(word, tool):
@@ -40,7 +40,7 @@ class ParaphrasingTool:
         1. gets the list of rhyming words
         2. returns the one with the most points
         '''
-        word = self.name()
+        word = self.name()[:-1]
         rhymes = get_paraphrasing_tool(word, 'rhymes')
         if len(rhymes) == 0:
             return f'{self.name()}'

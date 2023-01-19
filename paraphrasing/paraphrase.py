@@ -1,6 +1,10 @@
-from paraphrasing_tools import ParaphrasingTool
+from .paraphrasing_tools import ParaphrasingTool
 from random import choice
-from defs import words_not_to_change
+from .defs import words_not_to_change
+
+
+class WrongPercentageError(Exception):
+    pass
 
 
 class Paraphrase:
@@ -12,8 +16,8 @@ class Paraphrase:
     :param type: int
     '''
     def __init__(self, text, percentage):
-        if percentage > 100:
-            raise ValueError('percentage must be between 0 and 100')
+        if percentage > 100 or percentage < 0:
+            raise WrongPercentageError('percentage must be between 0 and 100')
         self._percentage = percentage
         self._text = text
 

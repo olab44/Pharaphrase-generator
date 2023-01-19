@@ -29,9 +29,14 @@ def test_paraphrasing_tool_switch_rhy():
     assert word.switch_rhyme() == 'railroad\n'
 
 
+def test_paraphrasing_tool_switch_rhy_with_n():
+    word = ParaphrasingTool('road\n')
+    assert word.switch_rhyme() == 'railroad\n'
+
+
 def test_paraphrasing_tool_switch_rhy_fail():
-    word = ParaphrasingTool('egoenwonvi')
-    assert word.switch_rhyme() == 'egoenwonvi'
+    word = ParaphrasingTool('egoenwonvi\n')
+    assert word.switch_rhyme() == 'egoenwonvi\n'
 
 
 def test_paraphrasing_tool_add_adj():
