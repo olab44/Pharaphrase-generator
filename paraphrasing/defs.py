@@ -1,7 +1,7 @@
 import json
 
 
-def get_defs(path='config.json'):
+def get_defs(path='paraphrasing/config.json'):
     '''
     gets all the data from config.json
     '''

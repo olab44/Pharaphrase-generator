@@ -53,5 +53,3 @@ def test_paraphrase(monkeypatch):
                 'hood', 'due', 'in', 'early April', '--\n',
                 'Wishing', 'you', 'right', 'Day', '--\n']
     assert parap.paraphrase() == expected
-
-

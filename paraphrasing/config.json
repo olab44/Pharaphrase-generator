@@ -6,7 +6,7 @@
         "rhymes": "https://api.datamuse.com/words?ml={word}&rel_rhy={word}",
         "related_adjectives": "https://api.datamuse.com/words?rel_jjb={word}"
     },
-    "saved_lyrics": "saved_lyrics.txt",
+    "saved_lyrics": "paraphrasing/saved_lyrics.txt",
     "words_not_to_change": ["I", "you", "he", "she", "it",
                             "we", "they", "my", "your", "his",
                             "her", "its", "our", "their",

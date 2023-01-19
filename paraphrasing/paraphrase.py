@@ -1,7 +1,6 @@
 from paraphrasing_tools import ParaphrasingTool
 from random import choice
 from defs import words_not_to_change
-from getting_lyrics import read_from_lyrics, write_to_lyrics
 
 
 class Paraphrase:
