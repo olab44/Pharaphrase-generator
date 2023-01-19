@@ -7,6 +7,10 @@ class WrongPercentageError(Exception):
     pass
 
 
+class NoPercentageError(Exception):
+    pass
+
+
 class Paraphrase:
     ''''
     Class Paraphrase. Contains attributes:
@@ -16,9 +20,11 @@ class Paraphrase:
     :param type: int
     '''
     def __init__(self, text, percentage):
-        if percentage > 100 or percentage < 0:
+        if not percentage:
+            raise NoPercentageError('no percentage given')
+        if int(percentage) > 100 or int(percentage) < 0:
             raise WrongPercentageError('percentage must be between 0 and 100')
-        self._percentage = percentage
+        self._percentage = int(percentage)
         self._text = text
 
     def text(self):

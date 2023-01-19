@@ -5,9 +5,9 @@ from .defs import all_urls, saved_lyrics
 class NotFoundTitleError(Exception):
     pass
 
+
 class NotFoundTextError(Exception):
     pass
-
 
 
 class Poem:
@@ -39,10 +39,10 @@ class Poem:
         raises ValueError, when API does not find anything
         '''
         if not self.author():
-            return requests.get(all_urls()['lyrics_title'].format(title=self.title())).json()
+            poem = requests.get(all_urls()['lyrics_title'].format(title=self.title())).json()
         poem = requests.get(all_urls()['lyrics_author'].format(title=self.title(), author=self.author())).json()
         if 'status' in poem:
-            raise NotFoundTextError('Sorry we could not find poem with this title')
+            raise NotFoundTextError('Sorry we could not find poem')
         return poem
 
     def lines(self):
