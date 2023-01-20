@@ -68,7 +68,7 @@ def main():
         action = str(input('Press c to continue or q to quit '))
         if action == 'c':
             generate()
-        if action == 'q':
+        else:
             exit()
 
 
