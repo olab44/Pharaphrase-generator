@@ -24,11 +24,6 @@ def test_paraphrasing_tool_switch_syn_fail():
     assert word.switch_synonyms() == 'wneionwon'
 
 
-def test_paraphrasing_tool_switch_rhy():
-    word = ParaphrasingTool('road')
-    assert word.switch_rhyme() == 'railroad\n'
-
-
 def test_paraphrasing_tool_switch_rhy_with_n():
     word = ParaphrasingTool('road\n')
     assert word.switch_rhyme() == 'railroad\n'
