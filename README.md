@@ -1,6 +1,6 @@
 # Generator parafraz
 
-How to run the programm:
+How to run the program:
 python3 -m paraphrasing.main
 
 How to run tests:
